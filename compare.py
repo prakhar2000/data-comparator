@@ -90,7 +90,11 @@ def compare(
         "removed": sum(1 for row in rows if row["status"] == "removed"),
         "changed": sum(1 for row in rows if row["status"] == "changed"),
     }
-    return {"summary": summary, "rows": rows}
+    return {
+        "summary": summary,
+        "columns": ["key", "status", "fields"],
+        "rows": rows,
+    }
 
 
 def main() -> None:

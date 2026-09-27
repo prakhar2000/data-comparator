@@ -23,12 +23,17 @@ docker run --rm \
 
 Stdout is the JSON report. The same JSON is written to `/outputs/report.json`.
 
-## What the pipeline passes in
+## tool.yaml
 
-| Input | Default path | Env override |
-|---|---|---|
-| Older file (`file_a`) | `/inputs/file_a` | `FILE_A` or `INPUT_FILE_A` |
-| Newer file (`file_b`) | `/inputs/file_b` | `FILE_B` or `INPUT_FILE_B` |
-| Report | `/outputs/report.json` | `OUTPUT_REPORT` |
+The portal builds the run screen from this file. It does not special-case the language.
+
+| Field | What the portal does |
+|---|---|
+| `inputs[].type` | `file` or `text`. One control per input. |
+| `inputs[].label` | The label on that control. |
+| `inputs[].bind.path` | Where the container receives that input. |
+| `outputs[].type` | `table`, `file`, or `text`. Picks the result view. |
+| `outputs[].bind.path` | Where the container writes the result. |
+| `outputs[].bind.format` | `json` is an object with `columns` and `rows`. |
 
 `tool.yaml` asks for 1 vCPU, 2 GB, no GPU, and a 60 second limit. The sample files are the holdings diff from the portal: NVDA added, TLT removed, AAPL and MSFT changed.

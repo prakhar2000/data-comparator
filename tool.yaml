@@ -9,13 +9,27 @@ run:
 inputs:
   - name: file_a
     type: file
+    label: Older file
     description: Older file
+    bind:
+      as: file
+      path: /inputs/file_a
   - name: file_b
     type: file
+    label: Newer file
     description: Newer file
+    bind:
+      as: file
+      path: /inputs/file_b
 outputs:
   - name: report
     type: table
+    label: Changes
+    description: Rows added, removed, and changed
+    bind:
+      as: file
+      path: /outputs/report.json
+      format: json
 resources:
   cpu: 1
   memory: 2GB
