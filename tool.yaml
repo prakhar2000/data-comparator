@@ -1,0 +1,25 @@
+name: Data comparator
+description: Compares two CSV files and shows rows added, removed, and changed.
+tags: [data, diff, spreadsheet, holdings]
+owner: risk-team
+version: 1.0.0
+run:
+  dockerfile: ./Dockerfile
+  command: python compare.py
+inputs:
+  - name: file_a
+    type: file
+    description: Older file
+  - name: file_b
+    type: file
+    description: Newer file
+outputs:
+  - name: report
+    type: table
+resources:
+  cpu: 1
+  memory: 2GB
+  gpu: none
+  timeout: 60s
+data_access: none
+sharing: company
